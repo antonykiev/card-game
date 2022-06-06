@@ -33,9 +33,9 @@ class FragmentCardSelectorGame: Fragment(R.layout.fragment_card_selector_game) {
         ).forEach {
             it.setOnClickListener {
                 when (it.id) {
-                    R.id.lancut -> viewModelGame.onSelect(ViewModelCard.Card.Lancut)
-                    R.id.ordinata -> viewModelGame.onSelect(ViewModelCard.Card.Ordynata)
-                    else -> viewModelGame.onSelect(ViewModelCard.Card.Fontanna)
+                    R.id.lancut -> viewModelGame.onSelectCard(ViewModelCard.Card.Lancut)
+                    R.id.ordinata -> viewModelGame.onSelectCard(ViewModelCard.Card.Ordynata)
+                    else -> viewModelGame.onSelectCard(ViewModelCard.Card.Fontanna)
                 }
 
                 requireActivity().supportFragmentManager

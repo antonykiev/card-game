@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.ir.backend.js.compile
 import utils.*
 
 plugins {
@@ -43,4 +44,6 @@ dependencies {
     implementation (Dependencies.Ktx.fragment)
 
     implementation (Dependencies.Binding.delegate)
+
+    compileOnly ("com.hkm.ui:frame-imageview:5.2.5")
 }

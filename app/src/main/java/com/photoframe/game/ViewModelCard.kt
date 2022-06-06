@@ -5,9 +5,23 @@ import androidx.lifecycle.*
 class ViewModelCard: ViewModel() {
 
     val selectedCard = MutableLiveData<Card>()
+    val selectedFrame = MutableLiveData(Frame.zero)
+    val selectedMessage = MutableLiveData("")
 
-    fun onSelect(card: Card) = selectedCard.postValue(card)
+    fun onSelectCard(card: Card) = selectedCard.postValue(card)
 
+    fun onSelectFrame(frame: Frame) = selectedFrame.postValue(frame)
+
+    fun onSelectMessage(message: String) = selectedMessage.postValue(message)
+
+
+    enum class Frame(val value: Int) {
+        zero(0),
+        one(1),
+        two(2),
+        three(3),
+        four(4),
+    }
 
     enum class Card(
         val idImg: Int,

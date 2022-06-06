@@ -45,4 +45,12 @@
         Na rewersie nadruk w języku francuskim i polskim.
         \n
         Tytuł z nadruku na awersie.</string>
+    <string name="done">Gotowe</string>
+    <string name="text">Tekst</string>
+    <string name="frame">Ramka</string>
+    <string name="frame_1">1</string>
+    <string name="frame_2">2</string>
+    <string name="cancel">Brak</string>
+    <string name="frame_3">3</string>
+    <string name="frame_4">4</string>
 </resources>

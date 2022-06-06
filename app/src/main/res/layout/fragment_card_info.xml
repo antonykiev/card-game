@@ -73,7 +73,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNext"
-        style="@style/LongButton"
+        style="@style/LongButtonWhite"
         android:layout_marginBottom="24dp"
         android:text="@string/next"
         app:layout_constraintBottom_toTopOf="@+id/btnBack"
@@ -82,7 +82,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnBack"
-        style="@style/LongButton"
+        style="@style/LongButtonWhite"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

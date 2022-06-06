@@ -42,7 +42,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNext"
-        style="@style/LongButton"
+        style="@style/LongButtonWhite"
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

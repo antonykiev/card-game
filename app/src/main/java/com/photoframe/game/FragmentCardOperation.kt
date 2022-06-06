@@ -19,5 +19,25 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         viewModelGame.selectedCard.observe(viewLifecycleOwner) {
             binding.card.setImageResource(it.idImg)
         }
+
+        listOf(binding.imgText, binding.imgFrame).forEach {
+            it.setOnClickListener {
+                binding.lSelector.visibility = View.INVISIBLE
+                binding.lSelectorFrame.visibility = View.VISIBLE
+            }
+        }
+
+        listOf(
+            binding.cancel,
+            binding.frame1,
+            binding.frame2,
+            binding.frame3,
+            binding.frame4,
+        ).forEach {
+            it.setOnClickListener {
+                val selectedFrameIndex = runCatching { it.tag.toString().toInt() }.getOrElse { 0 }
+                viewModelGame.onSelectFrame(ViewModelCard.Frame.values()[selectedFrameIndex])
+            }
+        }
     }
 }
