@@ -34,7 +34,7 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModelGame.selectedCard.observe(viewLifecycleOwner) {
-            binding.card.setImageResource(it.idImg)
+            binding.card.setImg(it.idImg)
         }
 
         viewModelGame.selectedFrame.observe(viewLifecycleOwner) {
@@ -43,7 +43,7 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
         binding.imgEdTxt.doOnTextChanged { text, start, before, count ->
             viewModelGame.onSelectMessage(text.toString())
-            binding.cardMessage.text = text
+            binding.card.setMessageText(text.toString())
         }
 
 
