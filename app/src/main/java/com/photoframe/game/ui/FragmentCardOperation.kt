@@ -12,6 +12,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.snackbar.Snackbar
 import com.photoframe.game.utils.BitmapToUriProvider
 import com.photoframe.game.R
 import com.photoframe.game.utils.SaveImageProvider
@@ -103,6 +104,11 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
             onNeverAskAgain = { Toast.makeText(requireContext(), getString(R.string.on_never_ask_again), Toast.LENGTH_SHORT).show() }
         ) {
             SaveImageProvider.save(imgScreenShot, requireContext())
+            Snackbar.make(
+                binding.root,
+                getString(R.string.success_saving),
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
         request.launch()
     }

@@ -22,29 +22,11 @@
     <string name="title3">W nagrodę za prawidłowe ułożenie układanki otrzymujesz dwie kolorowanki do pobrania! Stuknij w obrazek poniżej aby zapisać kolorowankę</string>
     <string name="give_up">Poddaję się</string>
     <string name="lancut">Łańcut - zamek, brama, widok</string>
-    <string name="lancut_content">Rok: 1931
-        \n
-        Miejsce wydania: Paris
-        \n\n
-        Na rewersie nadruk w języku francuskim i polskim.
-        \n
-        Tytuł z nadruku na awersie.</string>
+    <string name="lancut_content">Rok: 1931\nMiejsce wydania: Paris\n\nNa rewersie nadruk w języku francuskim i polskim.\nTytuł z nadruku na awersie.</string>
     <string name="ordynata">Łańcut Ordynata Potockiego</string>
-    <string name="ordynata_content">Rok: 1931
-        \n
-        Miejsce wydania: Paris
-        \n\n
-        Na rewersie nadruk w języku francuskim i polskim.
-        \n
-        Tytuł z nadruku na awersie.</string>
+    <string name="ordynata_content">Rok: 1931\nMiejsce wydania: Paris\n\nNa rewersie nadruk w języku francuskim i polskim.\nTytuł z nadruku na awersie.</string>
     <string name="fontanna">Fontanna</string>
-    <string name="fontanna_content">Rok: 1931
-        \n
-        Miejsce wydania: Paris
-        \n\n
-        Na rewersie nadruk w języku francuskim i polskim.
-        \n
-        Tytuł z nadruku na awersie.</string>
+    <string name="fontanna_content">Rok: 1931\nMiejsce wydania: Paris\n\nNa rewersie nadruk w języku francuskim i polskim.\nTytuł z nadruku na awersie.</string>
     <string name="done">Gotowe</string>
     <string name="text">Tekst</string>
     <string name="frame">Ramka</string>
@@ -59,4 +41,5 @@
     <string name="on_permission_denied">onPermissionDenied</string>
     <string name="on_never_ask_again">onNeverAskAgain</string>
     <string name="share_image">Share Image</string>
+    <string name="success_saving">Card is saved to the gallery</string>
 </resources>
