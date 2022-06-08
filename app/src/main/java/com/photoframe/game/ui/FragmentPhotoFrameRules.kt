@@ -1,9 +1,10 @@
-package com.photoframe.game
+package com.photoframe.game.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.photoframe.game.R
 import com.photoframe.game.databinding.FragmentPhotoframeRulesBinding
 
 class FragmentPhotoFrameRules: Fragment(R.layout.fragment_photoframe_rules) {

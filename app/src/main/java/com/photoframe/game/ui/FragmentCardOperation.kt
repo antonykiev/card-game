@@ -1,27 +1,22 @@
-package com.photoframe.game
+package com.photoframe.game.ui
 
 import android.Manifest
-import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.FileProvider
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.photoframe.game.utils.BitmapToUriProvider
+import com.photoframe.game.R
+import com.photoframe.game.utils.SaveImageProvider
+import com.photoframe.game.viewmodels.ViewModelCard
 import com.photoframe.game.databinding.FragmentCardOperationBinding
 import permissions.dispatcher.ktx.constructPermissionsRequest
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 
 class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 

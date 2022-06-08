@@ -1,4 +1,4 @@
-package com.photoframe.game
+package com.photoframe.game.utils
 
 import android.content.ContentValues
 import android.content.Context

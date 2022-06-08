@@ -18,7 +18,7 @@
         android:theme="@style/Theme.FlowPet">
 
         <activity
-            android:name="com.photoframe.game.ActivityPhotoFrameGame"
+            android:name="com.photoframe.game.ui.ActivityPhotoFrameGame"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

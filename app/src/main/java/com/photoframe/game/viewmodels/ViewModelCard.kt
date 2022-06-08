@@ -1,6 +1,7 @@
-package com.photoframe.game
+package com.photoframe.game.viewmodels
 
 import androidx.lifecycle.*
+import com.photoframe.game.R
 
 class ViewModelCard: ViewModel() {
 

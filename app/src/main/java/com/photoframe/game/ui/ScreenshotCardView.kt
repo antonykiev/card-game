@@ -1,4 +1,4 @@
-package com.photoframe.game
+package com.photoframe.game.ui
 
 import android.content.Context
 import androidx.core.view.setPadding

@@ -1,10 +1,12 @@
-package com.photoframe.game
+package com.photoframe.game.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.photoframe.game.R
+import com.photoframe.game.viewmodels.ViewModelCard
 import com.photoframe.game.databinding.FragmentCardSelectorGameBinding
 
 class FragmentCardSelectorGame: Fragment(R.layout.fragment_card_selector_game) {

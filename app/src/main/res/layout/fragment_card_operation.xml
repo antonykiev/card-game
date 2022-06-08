@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.photoframe.game.ScreenshotCardView
+    <com.photoframe.game.ui.ScreenshotCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
