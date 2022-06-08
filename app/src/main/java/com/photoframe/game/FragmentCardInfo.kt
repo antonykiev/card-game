@@ -29,10 +29,9 @@ class FragmentCardInfo: Fragment(R.layout.fragment_card_info) {
         binding.btnNext.setOnClickListener {
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .add(R.id.root, FragmentCardOperation())
+                .replace(R.id.root, FragmentCardOperation())
                 .addToBackStack("")
                 .commit()
         }
     }
-
 }

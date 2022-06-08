@@ -1,6 +1,7 @@
 package com.photoframe.game
 
 import android.content.Context
+import androidx.core.view.setPadding
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.AttributeSet
@@ -17,6 +18,9 @@ class ScreenshotCardView: ConstraintLayout {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
 
+    fun setFrame(padding: Int) {
+        binding.card.setPadding(padding * 10)
+    }
 
     fun setImg(id: Int) {
         binding.card.setImageResource(id)

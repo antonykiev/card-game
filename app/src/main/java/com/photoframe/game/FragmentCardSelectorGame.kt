@@ -40,7 +40,7 @@ class FragmentCardSelectorGame: Fragment(R.layout.fragment_card_selector_game) {
 
                 requireActivity().supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.root, FragmentCardInfo())
+                    .replace(R.id.root, FragmentCardInfo())
                     .addToBackStack("")
                     .commit()
             }

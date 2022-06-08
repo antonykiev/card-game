@@ -11,7 +11,6 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.setPadding
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -38,7 +37,11 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         }
 
         viewModelGame.selectedFrame.observe(viewLifecycleOwner) {
-            binding.card.setPadding(it.value * 10)
+            binding.card.setFrame(it.value)
+        }
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressed()
         }
 
         binding.imgEdTxt.doOnTextChanged { text, start, before, count ->
@@ -103,14 +106,15 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
     }
 
     private fun saveImg(imgScreenShot: Bitmap) {
-        constructPermissionsRequest(
+        val request = constructPermissionsRequest(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             onShowRationale = { it.proceed() },
             onPermissionDenied = { Toast.makeText(requireContext(), "onPermissionDenied", Toast.LENGTH_SHORT).show() },
             onNeverAskAgain = { Toast.makeText(requireContext(), "onNeverAskAgain", Toast.LENGTH_SHORT).show() }
         ) {
             saveImage(imgScreenShot, requireContext(), folderName)
-        }.launch()
+        }
+        request.launch()
     }
 
     private fun shareBitmap(imgScreenShot: Bitmap) {

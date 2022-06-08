@@ -8,11 +8,10 @@
     android:background="@drawable/bg_photoframe">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/msgTitle"
-        style="@style/LongButtonWhite"
+        android:id="@+id/btnBack"
+        style="@style/ShortButton"
         android:clickable="false"
         android:text="@string/back"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +24,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msgTitle"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack"
         app:layout_constraintVertical_bias="0.338" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -255,6 +254,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnShare"
+        android:visibility="invisible"
         style="@style/LongButtonWhite"
         android:text="@string/share"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -263,6 +263,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSave"
+        android:visibility="invisible"
         style="@style/LongButtonWhite"
         android:layout_marginBottom="16dp"
         android:text="@string/save"

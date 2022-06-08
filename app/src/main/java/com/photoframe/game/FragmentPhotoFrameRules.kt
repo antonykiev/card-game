@@ -20,7 +20,7 @@ class FragmentPhotoFrameRules: Fragment(R.layout.fragment_photoframe_rules) {
         binding.btnNext.setOnClickListener {
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .add(R.id.root, FragmentCardSelectorGame())
+                .replace(R.id.root, FragmentCardSelectorGame())
                 .addToBackStack("")
                 .commit()
         }
