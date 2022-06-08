@@ -55,4 +55,8 @@
     <string name="frame_4">4</string>
     <string name="save">Zapisz pocztówkę</string>
     <string name="share">Udostępnij pocztówkę</string>
+
+    <string name="on_permission_denied">onPermissionDenied</string>
+    <string name="on_never_ask_again">onNeverAskAgain</string>
+    <string name="share_image">Share Image</string>
 </resources>

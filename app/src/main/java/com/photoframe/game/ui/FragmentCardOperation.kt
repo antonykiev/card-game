@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,7 +20,6 @@ import com.photoframe.game.databinding.FragmentCardOperationBinding
 import permissions.dispatcher.ktx.constructPermissionsRequest
 
 class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
-
 
     private val binding by viewBinding(FragmentCardOperationBinding::bind)
     private val viewModelGame by activityViewModels<ViewModelCard>()
@@ -51,14 +51,7 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
         }
 
-        binding.btnDone.setOnClickListener {
-            binding.lSelector.visibility = View.INVISIBLE
-            binding.lSelectorFrame.visibility = View.INVISIBLE
-            binding.btnDone.visibility = View.INVISIBLE
-
-            binding.btnShare.visibility = View.VISIBLE
-            binding.btnSave.visibility = View.VISIBLE
-        }
+        binding.btnDone.setOnClickListener(::onDoneClicked)
 
         binding.btnSave.setOnClickListener {
             val imgScreenShot: Bitmap = takeScreenShot(binding.card)
@@ -106,8 +99,8 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         val request = constructPermissionsRequest(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             onShowRationale = { it.proceed() },
-            onPermissionDenied = { Toast.makeText(requireContext(), "onPermissionDenied", Toast.LENGTH_SHORT).show() },
-            onNeverAskAgain = { Toast.makeText(requireContext(), "onNeverAskAgain", Toast.LENGTH_SHORT).show() }
+            onPermissionDenied = { Toast.makeText(requireContext(), getString(R.string.on_permission_denied), Toast.LENGTH_SHORT).show() },
+            onNeverAskAgain = { Toast.makeText(requireContext(), getString(R.string.on_never_ask_again), Toast.LENGTH_SHORT).show() }
         ) {
             SaveImageProvider.save(imgScreenShot, requireContext())
         }
@@ -120,6 +113,21 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_STREAM, uri)
-        startActivity(Intent.createChooser(intent, "Share Image"))
+        startActivity(Intent.createChooser(intent, getString(R.string.share_image)))
+    }
+
+    private fun onDoneClicked(view: View) {
+        if (binding.btnShare.isVisible) {
+            requireActivity().supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.root, FragmentCongratulation())
+                .commit()
+        } else {
+            binding.lSelector.visibility = View.INVISIBLE
+            binding.lSelectorFrame.visibility = View.INVISIBLE
+
+            binding.btnShare.visibility = View.VISIBLE
+            binding.btnSave.visibility = View.VISIBLE
+        }
     }
 }
