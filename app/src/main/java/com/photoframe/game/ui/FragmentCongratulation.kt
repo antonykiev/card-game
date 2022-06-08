@@ -24,7 +24,8 @@ class FragmentCongratulation: Fragment(R.layout.fragment_card_congratulations) {
         }
 
         viewModelGame.scoreCounter.observe(viewLifecycleOwner) {
-            binding.tvResult.text = "${it.size}"
+            val scoreSteps = 50
+            binding.tvResult.text = "${it.size * scoreSteps}"
         }
 
         binding.btnNext.setOnClickListener {
