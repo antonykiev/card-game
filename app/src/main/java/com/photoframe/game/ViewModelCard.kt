@@ -8,11 +8,21 @@ class ViewModelCard: ViewModel() {
     val selectedFrame = MutableLiveData(Frame.zero)
     val selectedMessage = MutableLiveData("")
 
-    fun onSelectCard(card: Card) = selectedCard.postValue(card)
+    fun resetAll() {
+
+    }
+
+    fun onSelectCard(card: Card) {
+        selectedCard.postValue(card)
+        selectedFrame.postValue(Frame.zero)
+        selectedMessage.postValue("")
+    }
 
     fun onSelectFrame(frame: Frame) = selectedFrame.postValue(frame)
 
-    fun onSelectMessage(message: String) = selectedMessage.postValue(message)
+    fun onSelectMessage(message: String) {
+        selectedMessage.postValue(message)
+    }
 
 
     enum class Frame(val value: Int) {

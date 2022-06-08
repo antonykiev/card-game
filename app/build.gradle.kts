@@ -34,6 +34,7 @@ android {
 
 
 dependencies {
+
     implementation (Dependencies.Ktx.core)
     implementation (Dependencies.Androidx.appCompat)
     implementation (Dependencies.Androidx.material)
@@ -45,5 +46,6 @@ dependencies {
 
     implementation (Dependencies.Binding.delegate)
 
-    compileOnly ("com.hkm.ui:frame-imageview:5.2.5")
+    implementation ("com.github.permissions-dispatcher:ktx:1.1.4")
+
 }
