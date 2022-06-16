@@ -42,4 +42,6 @@
     <string name="on_never_ask_again">onNeverAskAgain</string>
     <string name="share_image">Share Image</string>
     <string name="success_saving">Card is saved to the gallery</string>
+    <string name="sub_title">Wybierz jedną z archiwalnych pocztówek</string>
+    <string name="decor">Udekoruj swoją pocztówkę</string>
 </resources>

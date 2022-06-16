@@ -9,9 +9,31 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnBack"
+        android:visibility="invisible"
         style="@style/ShortButton"
         android:clickable="false"
         android:text="@string/back"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDone2"
+        style="@style/ShortButton"
+        android:drawableLeft="@null"
+        android:background="@drawable/shape_white_green"
+        android:clickable="false"
+        android:text="@string/done"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/title"
+        style="@style/LongButtonWhite"
+        android:clickable="false"
+        android:text="@string/decor"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -83,6 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/text"
+            android:fontFamily="@font/proxima_nova_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="16sp"
@@ -96,6 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/frame"
+            android:fontFamily="@font/proxima_nova_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="16sp"
@@ -140,6 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/cancel"
+            android:fontFamily="@font/proxima_nova_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -165,6 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/frame_1"
+            android:fontFamily="@font/proxima_nova_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -190,6 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/frame_2"
+            android:fontFamily="@font/proxima_nova_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -215,6 +242,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/frame_3"
+            android:fontFamily="@font/proxima_nova_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -240,6 +268,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/frame_4"
+            android:fontFamily="@font/proxima_nova_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"

@@ -31,11 +31,4 @@ class ScreenshotCardView: ConstraintLayout {
         binding.cardMessage.text = msg
     }
 
-    fun takeScreenShot(): Bitmap {
-        val bitmap: Bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        draw(canvas)
-        return bitmap
-    }
-
 }

@@ -21,10 +21,11 @@
             android:layout_gravity="bottom"
             android:background="@color/white">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/card"
+                app:shapeAppearanceOverlay="@style/customRroundedImageView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/card_lancut"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,8 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:textColor="@color/text_color"
-                android:textSize="28sp"
+                android:textSize="32sp"
+                android:fontFamily="@font/marker_felt"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +60,7 @@
                 android:layout_marginBottom="16dp"
                 android:background="@color/white"
                 android:textColor="@color/text_color"
+                android:fontFamily="@font/europe_regular"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

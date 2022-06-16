@@ -45,13 +45,25 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
             binding.card.setMessageText(text.toString())
         }
 
+//        binding.imgEdTxt.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+//            if (hasFocus) {
+//                editViewState()
+//            } else {
+//                initialViewState()
+//            }
+//        }
 
         binding.imgFrame.setOnClickListener {
             binding.lSelector.visibility = View.INVISIBLE
             binding.lSelectorFrame.visibility = View.VISIBLE
 
+            binding.title.visibility = View.INVISIBLE
+            binding.btnDone.visibility = View.INVISIBLE
+            binding.btnBack.visibility = View.VISIBLE
+            binding.btnDone2.visibility = View.VISIBLE
         }
 
+        binding.btnDone2.setOnClickListener(::onDoneClicked)
         binding.btnDone.setOnClickListener(::onDoneClicked)
 
         binding.btnSave.setOnClickListener {
@@ -78,13 +90,15 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
                     .getOrElse { 0 }
                 viewModelGame.onSelectFrame(ViewModelCard.Frame.values()[selectedFrameIndex])
 
-                binding.lSelector.visibility = View.VISIBLE
-                binding.lSelectorFrame.visibility = View.INVISIBLE
+                initialViewState()
 
-                if (selectedFrameIndex == 0) {
-                    binding.lSelector.visibility = View.VISIBLE
-                    binding.lSelectorFrame.visibility = View.INVISIBLE
-                }
+//                binding.lSelector.visibility = View.VISIBLE
+//                binding.lSelectorFrame.visibility = View.INVISIBLE
+//
+//                if (selectedFrameIndex == 0) {
+//                    binding.lSelector.visibility = View.VISIBLE
+//                    binding.lSelectorFrame.visibility = View.INVISIBLE
+//                }
             }
         }
     }
@@ -129,11 +143,44 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
                 .replace(R.id.root, FragmentCongratulation())
                 .commit()
         } else {
-            binding.lSelector.visibility = View.INVISIBLE
-            binding.lSelectorFrame.visibility = View.INVISIBLE
+            doneState()
+        }
+    }
 
-            binding.btnShare.visibility = View.VISIBLE
-            binding.btnSave.visibility = View.VISIBLE
+    private fun initialViewState() {
+        binding.run {
+            title.visibility = View.VISIBLE
+            btnDone.visibility = View.VISIBLE
+            lSelector.alpha = 1F
+            lSelector.visibility = View.VISIBLE
+
+            lSelectorFrame.visibility = View.INVISIBLE
+            btnDone2.visibility = View.INVISIBLE
+            btnBack.visibility = View.INVISIBLE
+            btnDone2.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun editViewState() {
+        binding.run {
+            title.visibility = View.VISIBLE
+            btnDone.visibility = View.VISIBLE
+            lSelectorFrame.visibility = View.INVISIBLE
+            lSelector.alpha = 0F
+        }
+    }
+
+    fun doneState() {
+        binding.run {
+            title.visibility = View.INVISIBLE
+            lSelectorFrame.visibility = View.INVISIBLE
+            lSelector.visibility = View.INVISIBLE
+            btnDone2.visibility = View.INVISIBLE
+            btnBack.visibility = View.INVISIBLE
+
+            btnDone.visibility = View.VISIBLE
+            btnShare.visibility = View.VISIBLE
+            btnSave.visibility = View.VISIBLE
         }
     }
 }
