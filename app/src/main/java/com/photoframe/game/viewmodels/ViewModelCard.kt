@@ -42,6 +42,20 @@ class ViewModelCard: ViewModel() {
         incrementScore(ScoreState.Shared)
     }
 
+    fun resetAll() {
+        resetFrame()
+        resetMessage()
+        scoreCounter.value = hashSetOf()
+    }
+
+    fun resetFrame() {
+        selectedFrame.value = Frame.zero
+    }
+
+    fun resetMessage() {
+        selectedMessage.value = ""
+    }
+
     enum class ScoreState {
         FrameAdded,
         WritedMessage,

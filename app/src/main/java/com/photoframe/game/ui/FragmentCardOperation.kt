@@ -1,32 +1,45 @@
 package com.photoframe.game.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
-import com.photoframe.game.utils.BitmapToUriProvider
 import com.photoframe.game.R
+import com.photoframe.game.databinding.FragmentCardOperationBinding
+import com.photoframe.game.utils.BitmapToUriProvider
 import com.photoframe.game.utils.SaveImageProvider
 import com.photoframe.game.viewmodels.ViewModelCard
-import com.photoframe.game.databinding.FragmentCardOperationBinding
 import permissions.dispatcher.ktx.constructPermissionsRequest
+
 
 class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
     private val binding by viewBinding(FragmentCardOperationBinding::bind)
     private val viewModelGame by activityViewModels<ViewModelCard>()
 
+    val actionOnTextChanged: (text: CharSequence?, start: Int, before: Int, count: Int) -> Unit = { text, start, before, count ->
+        viewModelGame.onSelectMessage(text.toString())
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModelGame.selectedMessage.observe(viewLifecycleOwner) {
+            binding.card.setMessageText(it)
+        }
 
         viewModelGame.selectedCard.observe(viewLifecycleOwner) {
             binding.card.setImg(it.idImg)
@@ -36,22 +49,28 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
             binding.card.setFrame(it.value)
         }
 
+        binding.imgEdTxt.doOnTextChanged(actionOnTextChanged)
+
+
         binding.btnBack.setOnClickListener {
-            requireActivity().onBackPressed()
+            onBackPressed()
         }
 
-        binding.imgEdTxt.doOnTextChanged { text, start, before, count ->
-            viewModelGame.onSelectMessage(text.toString())
-            binding.card.setMessageText(text.toString())
+        requireActivity().onBackPressedDispatcher.addCallback {
+            onBackPressed()
         }
 
-//        binding.imgEdTxt.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-//            if (hasFocus) {
-//                editViewState()
-//            } else {
-//                initialViewState()
-//            }
-//        }
+        binding.vBack.setOnClickListener {
+            hideKeyboard(binding.root)
+        }
+
+        binding.imgEdTxt.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                editViewState()
+            } else {
+                initialViewState()
+            }
+        }
 
         binding.imgFrame.setOnClickListener {
             binding.lSelector.visibility = View.INVISIBLE
@@ -63,7 +82,9 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
             binding.btnDone2.visibility = View.VISIBLE
         }
 
-        binding.btnDone2.setOnClickListener(::onDoneClicked)
+        binding.btnDone2.setOnClickListener {
+            initialViewState()
+        }
         binding.btnDone.setOnClickListener(::onDoneClicked)
 
         binding.btnSave.setOnClickListener {
@@ -89,16 +110,6 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
                 val selectedFrameIndex = runCatching { it.tag.toString().toInt() }
                     .getOrElse { 0 }
                 viewModelGame.onSelectFrame(ViewModelCard.Frame.values()[selectedFrameIndex])
-
-                initialViewState()
-
-//                binding.lSelector.visibility = View.VISIBLE
-//                binding.lSelectorFrame.visibility = View.INVISIBLE
-//
-//                if (selectedFrameIndex == 0) {
-//                    binding.lSelector.visibility = View.VISIBLE
-//                    binding.lSelectorFrame.visibility = View.INVISIBLE
-//                }
             }
         }
     }
@@ -123,6 +134,7 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
                 getString(R.string.success_saving),
                 Snackbar.LENGTH_SHORT
             ).show()
+            binding.btnDone.visibility = View.VISIBLE
         }
         request.launch()
     }
@@ -134,6 +146,8 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_STREAM, uri)
         startActivity(Intent.createChooser(intent, getString(R.string.share_image)))
+        binding.btnDone.visibility = View.VISIBLE
+
     }
 
     private fun onDoneClicked(view: View) {
@@ -147,12 +161,44 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         }
     }
 
+    private fun hideKeyboard(view: View) {
+        val imm = getSystemService(requireContext(), InputMethodManager::class.java)
+        imm?.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModelGame.resetAll()
+    }
+
+    private fun onBackPressed() {
+        if (binding.imgEdTxt.hasFocus()) {
+            hideKeyboard(binding.root)
+            binding.imgEdTxt.clearFocus()
+
+            binding.imgEdTxt.setText("")
+            viewModelGame.resetMessage()
+            return
+        }
+
+        if (binding.lSelectorFrame.isVisible) {
+            viewModelGame.resetFrame()
+            initialViewState()
+            return
+        }
+        requireActivity().supportFragmentManager.popBackStack()
+    }
+
     private fun initialViewState() {
         binding.run {
             title.visibility = View.VISIBLE
             btnDone.visibility = View.VISIBLE
             lSelector.alpha = 1F
             lSelector.visibility = View.VISIBLE
+            imgFrame.visibility = View.VISIBLE
+            imgText.visibility = View.VISIBLE
+            textView.visibility = View.VISIBLE
+            textView2.visibility = View.VISIBLE
 
             lSelectorFrame.visibility = View.INVISIBLE
             btnDone2.visibility = View.INVISIBLE
@@ -163,10 +209,15 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
     private fun editViewState() {
         binding.run {
-            title.visibility = View.VISIBLE
-            btnDone.visibility = View.VISIBLE
-            lSelectorFrame.visibility = View.INVISIBLE
-            lSelector.alpha = 0F
+            btnDone2.visibility = View.VISIBLE
+            btnBack.visibility = View.VISIBLE
+
+            btnDone.visibility = View.INVISIBLE
+            title.visibility = View.INVISIBLE
+            imgFrame.visibility = View.INVISIBLE
+            imgText.visibility = View.INVISIBLE
+            textView.visibility = View.INVISIBLE
+            textView2.visibility = View.INVISIBLE
         }
     }
 
@@ -178,7 +229,12 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
             btnDone2.visibility = View.INVISIBLE
             btnBack.visibility = View.INVISIBLE
 
-            btnDone.visibility = View.VISIBLE
+            imgFrame.visibility = View.INVISIBLE
+            imgText.visibility = View.INVISIBLE
+            textView.visibility = View.INVISIBLE
+            textView2.visibility = View.INVISIBLE
+
+            btnDone.visibility = View.GONE
             btnShare.visibility = View.VISIBLE
             btnSave.visibility = View.VISIBLE
         }
