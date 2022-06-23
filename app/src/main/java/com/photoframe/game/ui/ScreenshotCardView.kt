@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.photoframe.game.databinding.ViewCardBinding
 
@@ -29,6 +30,10 @@ class ScreenshotCardView: ConstraintLayout {
 
     fun setMessageText(msg: String) {
         binding.cardMessage.text = msg
+    }
+
+    fun setEditMode(isEdit: Boolean) {
+        binding.vOverlay.visibility = if (isEdit) View.VISIBLE else View.INVISIBLE
     }
 
 }

@@ -73,13 +73,18 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         }
 
         binding.imgFrame.setOnClickListener {
-            binding.lSelector.visibility = View.INVISIBLE
             binding.lSelectorFrame.visibility = View.VISIBLE
 
-            binding.title.visibility = View.INVISIBLE
-            binding.btnDone.visibility = View.INVISIBLE
             binding.btnBack.visibility = View.VISIBLE
             binding.btnDone2.visibility = View.VISIBLE
+
+            binding.lSelector.visibility = View.INVISIBLE
+            binding.title.visibility = View.INVISIBLE
+            binding.btnDone.visibility = View.INVISIBLE
+            binding.imgFrame.visibility = View.INVISIBLE
+            binding.imgText.visibility = View.INVISIBLE
+            binding.textView.visibility = View.INVISIBLE
+            binding.textView2.visibility = View.INVISIBLE
         }
 
         binding.btnDone2.setOnClickListener {
@@ -191,6 +196,8 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
     private fun initialViewState() {
         binding.run {
+            card.setEditMode(false)
+
             title.visibility = View.VISIBLE
             btnDone.visibility = View.VISIBLE
             lSelector.alpha = 1F
@@ -209,6 +216,8 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
     private fun editViewState() {
         binding.run {
+            card.setEditMode(true)
+
             btnDone2.visibility = View.VISIBLE
             btnBack.visibility = View.VISIBLE
 
@@ -223,6 +232,8 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
     fun doneState() {
         binding.run {
+            card.setEditMode(false)
+
             title.visibility = View.INVISIBLE
             lSelectorFrame.visibility = View.INVISIBLE
             lSelector.visibility = View.INVISIBLE
