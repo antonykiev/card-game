@@ -73,6 +73,7 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
         }
 
         binding.imgFrame.setOnClickListener {
+            binding.imgEdTxt.clearFocus()
             binding.lSelectorFrame.visibility = View.VISIBLE
 
             binding.btnBack.visibility = View.VISIBLE
@@ -89,6 +90,7 @@ class FragmentCardOperation: Fragment(R.layout.fragment_card_operation) {
 
         binding.btnDone2.setOnClickListener {
             initialViewState()
+            hideKeyboard(binding.root)
         }
         binding.btnDone.setOnClickListener(::onDoneClicked)
 
